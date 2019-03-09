@@ -14,10 +14,9 @@ def call(script) {
 
     //params.put('jobName', jobName)            // error due to unmodifiable collection
 
-    println $build
-
+    def currentRawBuild = script.currentBuild.rawBuild
     List<ParameterValue> newParams = new ArrayList<>()
     newParams.add(new StringParameterValue('jobName', jobName))
-    $build().addOrReplaceAction($build().getAction(ParametersAction.class).createUpdated(newParams))
+    currentRawBuild.addOrReplaceAction($build().getAction(ParametersAction.class).createUpdated(newParams))
 
 }
