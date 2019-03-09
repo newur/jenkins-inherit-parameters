@@ -4,6 +4,8 @@ def call(script) {
 //    println Arrays.asList(script.getClass().getInterfaces())
 //    println Arrays.asList(script.getClass().getDeclaredFields())
 //    println Arrays.asList(script.getClass().getDeclaredMethods())
+    def currentRawBuild = script.currentBuild.rawBuild
+
     println script.env.HOME
     println script.params.class
     println script.currentBuild
@@ -12,18 +14,17 @@ def call(script) {
     println script.currentBuild.rawBuild.parent.parent  // the actual parent: someFolder (contains dummyJob)
 
 
-    def jobName = script.currentBuild.rawBuild.parent.name
+    def jobName = currentRawBuild.parent.name
 
-    def currentRawBuild = script.currentBuild.rawBuild
 
-    print 'env: '
-    println env.environment
+    def env = script.env
 
-    List<ParameterValue> newParams = new ArrayList<>()
-    newParams.add(new StringParameterValue('jobName', jobName))
+    env.FOOBAR = 'foobar'
+    println env.FOOBAR
 
-    println "parameter action class: " + currentRawBuild.getAction(ParametersAction.class)
-
-    currentRawBuild.addOrReplaceAction(currentRawBuild.getAction(ParametersAction.class).createUpdated(newParams))
+//    only works if build has parameters
+//    List<ParameterValue> newParams = new ArrayList<>()
+//    newParams.add(new StringParameterValue('jobName', jobName))
+//    currentRawBuild.addOrReplaceAction(currentRawBuild.getAction(ParametersAction.class).createUpdated(newParams))
 
 }
