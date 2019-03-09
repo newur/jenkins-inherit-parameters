@@ -12,5 +12,12 @@ def call(script) {
     println script.currentBuild.rawBuild.parent.parent  // the actual parent: someFolder (contains dummyJob)
     def jobName = script.currentBuild.rawBuild.parent
 
-    params.put('jobName', jobName)
+    //params.put('jobName', jobName)            // error due to unmodifiable collection
+
+    println $build
+
+    List<ParameterValue> newParams = new ArrayList<>()
+    newParams.add(new StringParameterValue('jobName', jobName))
+    $build().addOrReplaceAction($build().getAction(ParametersAction.class).createUpdated(newParams))
+
 }
