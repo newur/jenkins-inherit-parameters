@@ -1,3 +1,3 @@
 def call(script) {
-    println script
+    println script.class.getName()
 }
