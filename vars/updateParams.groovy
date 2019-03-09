@@ -6,4 +6,7 @@ def call(script) {
 //    println Arrays.asList(script.getClass().getDeclaredMethods())
     println script.env.HOME
     println script.params
+    println script.currentBuild
+    println script.currentBuild.rawBuild
+    println script.currentBuild.rawBuild.parent
 }
