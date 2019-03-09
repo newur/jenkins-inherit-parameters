@@ -16,7 +16,8 @@ def call(script) {
 
     def currentRawBuild = script.currentBuild.rawBuild
 
-    println env
+    print 'env: '
+    println env.environment
 
     List<ParameterValue> newParams = new ArrayList<>()
     newParams.add(new StringParameterValue('jobName', jobName))
