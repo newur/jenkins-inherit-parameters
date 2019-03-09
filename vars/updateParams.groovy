@@ -10,7 +10,9 @@ def call(script) {
     println script.currentBuild.rawBuild                // current job run like dummyJob #11
     println script.currentBuild.rawBuild.parent         // the job definition: dummyJob
     println script.currentBuild.rawBuild.parent.parent  // the actual parent: someFolder (contains dummyJob)
-    def jobName = script.currentBuild.rawBuild.parent
+
+
+    def jobName = script.currentBuild.rawBuild.parent.name
 
     //params.put('jobName', jobName)            // error due to unmodifiable collection
 
