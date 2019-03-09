@@ -9,4 +9,5 @@ def call(script) {
     println script.currentBuild
     println script.currentBuild.rawBuild
     println script.currentBuild.rawBuild.parent
+    println script.currentBuild.rawBuild.parent.parent
 }
