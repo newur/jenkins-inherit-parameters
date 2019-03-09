@@ -19,6 +19,9 @@ def call(script) {
     def currentRawBuild = script.currentBuild.rawBuild
     List<ParameterValue> newParams = new ArrayList<>()
     newParams.add(new StringParameterValue('jobName', jobName))
+
+    println "parameter action class: " + currentRawBuild.getAction(ParametersAction.class)
+
     currentRawBuild.addOrReplaceAction(currentRawBuild.getAction(ParametersAction.class).createUpdated(newParams))
 
 }
