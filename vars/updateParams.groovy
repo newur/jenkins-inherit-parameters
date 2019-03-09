@@ -17,6 +17,9 @@ def call(script) {
     //params.put('jobName', jobName)            // error due to unmodifiable collection
 
     def currentRawBuild = script.currentBuild.rawBuild
+
+    println currentRawBuild.url
+
     List<ParameterValue> newParams = new ArrayList<>()
     newParams.add(new StringParameterValue('jobName', jobName))
 
