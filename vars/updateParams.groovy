@@ -14,11 +14,9 @@ def call(script) {
 
     def jobName = script.currentBuild.rawBuild.parent.name
 
-    //params.put('jobName', jobName)            // error due to unmodifiable collection
-
     def currentRawBuild = script.currentBuild.rawBuild
 
-    println currentRawBuild.url
+    println env
 
     List<ParameterValue> newParams = new ArrayList<>()
     newParams.add(new StringParameterValue('jobName', jobName))
