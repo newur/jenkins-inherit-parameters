@@ -5,9 +5,12 @@ def call(script) {
 //    println Arrays.asList(script.getClass().getDeclaredFields())
 //    println Arrays.asList(script.getClass().getDeclaredMethods())
     println script.env.HOME
-    println script.params
+    println script.params.class
     println script.currentBuild
-    println script.currentBuild.rawBuild
-    println script.currentBuild.rawBuild.parent
-    println script.currentBuild.rawBuild.parent.parent
+    println script.currentBuild.rawBuild                // current job run like dummyJob #11
+    println script.currentBuild.rawBuild.parent         // the job definition: dummyJob
+    println script.currentBuild.rawBuild.parent.parent  // the actual parent: someFolder (contains dummyJob)
+    def jobName = script.currentBuild.rawBuild.parent
+
+    params.put('jobName', jobName)
 }
