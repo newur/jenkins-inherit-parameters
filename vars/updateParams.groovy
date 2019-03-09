@@ -1,3 +1,3 @@
 def call(script) {
-    println script.class.getName()
+    println script.metaClass.methods.name.unique()
 }
